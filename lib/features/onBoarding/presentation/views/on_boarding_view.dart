@@ -10,17 +10,20 @@ class OnBoardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ListView(
+            children: const [
               SizedBox(
                 height: 40,
               ),
               CustomNavBar(),
               OnBoardingWidgetBody(),
+              SizedBox(
+                height: 88,
+              ),
               CustomBtn(
                 text: AppStrings.next,
               ),
