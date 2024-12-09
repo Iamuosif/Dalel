@@ -1,10 +1,21 @@
 abstract class AppStrings {
-  static const String dalel = 'Dalel';
-  static const String next = 'Next';
-  static const String welcome = 'Welcome';
-  static const String signin = 'Sign In';
-  static const String signup = 'Sign Up';
-  static const String createacc = 'Create Account';
-  static const String haveacc = 'Already have an account';
-  static const String login = 'Login Now';
+  static const String appname = 'Dalel',
+      //!onBoarding
+      skip = 'Skip',
+      next = 'Next',
+      createacc = 'Create Account',
+      login = 'Login Now',
+      //!Auth
+      signin = 'Sign In',
+      signup = 'Sign up',
+      firstname = 'First Name',
+      lastname = 'Last Name',
+      emailadd = 'Email Address',
+      password = "Password",
+      donthaveacc = "Don't have an account ?",
+      haveacc = 'Already have am account ?',
+      termsandcondition = 'I have agree to our Terms and Condition',
+      forgetpass = "Forget Password ?",
+      welcome = 'Welcome!',
+      welcomeback = 'Welcome Back!';
 }
