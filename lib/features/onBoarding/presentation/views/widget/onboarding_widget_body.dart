@@ -1,28 +1,31 @@
-import 'package:dalel/core/utils/app_assets.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
+import 'package:dalel/features/onBoarding/data/models/on_boarding_model.dart';
 import 'package:dalel/features/onBoarding/presentation/views/widget/custom_smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingWidgetBody extends StatelessWidget {
-  const OnBoardingWidgetBody({super.key});
+  const OnBoardingWidgetBody(
+      {super.key, required this.controller, this.onPageChanged});
+  final PageController controller;
+  final Function(int)? onPageChanged;
 
   @override
   Widget build(BuildContext context) {
-    final PageController controller = PageController();
     return SizedBox(
         height: 500,
         child: PageView.builder(
+          onPageChanged: onPageChanged,
           controller: controller,
-          itemCount: 3,
-          itemBuilder: (context, index) {
+          itemCount: onBoardingData.length,
+          itemBuilder: (context, i) {
             return Column(
               children: [
                 Container(
                   width: 343,
                   height: 290,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(Assets.imagesOnBoarding),
+                        image: AssetImage(onBoardingData[i].imagepath),
                         fit: BoxFit.fill),
                   ),
                 ),
@@ -34,7 +37,7 @@ class OnBoardingWidgetBody extends StatelessWidget {
                   height: 32,
                 ),
                 Text(
-                  'Explore The history with Dalel in smart way',
+                  onBoardingData[i].title,
                   style: CustomTextStyle.poppins500style24
                       .copyWith(fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
@@ -45,7 +48,7 @@ class OnBoardingWidgetBody extends StatelessWidget {
                   height: 16,
                 ),
                 Text(
-                  'Using our app’s history libraries you can find many historical periods',
+                  onBoardingData[i].subtitle,
                   style: CustomTextStyle.poppins300style16,
                   textAlign: TextAlign.center,
                 ),

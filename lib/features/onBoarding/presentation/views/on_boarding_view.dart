@@ -1,12 +1,20 @@
-import 'package:dalel/core/utils/app_strings.dart';
-import 'package:dalel/core/widget/custom_btn.dart';
+import 'package:dalel/core/functions/navigation.dart';
+import 'package:dalel/features/onBoarding/presentation/views/widget/get_buttons.dart';
 import 'package:dalel/features/onBoarding/presentation/views/widget/onboarding_widget_body.dart';
 import 'package:flutter/material.dart';
 
 import 'widget/custom_nav_bar.dart';
 
-class OnBoardingView extends StatelessWidget {
+class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
+
+  @override
+  State<OnBoardingView> createState() => _OnBoardingViewState();
+}
+
+class _OnBoardingViewState extends State<OnBoardingView> {
+  final PageController controller = PageController(initialPage: 0);
+  int currentpage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +23,28 @@ class OnBoardingView extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView(
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 height: 40,
               ),
-              CustomNavBar(),
-              OnBoardingWidgetBody(),
-              SizedBox(
+              CustomNavBar(
+                onTap: () {
+                  customNavigateReplacement(context, '/signUp');
+                },
+              ),
+              OnBoardingWidgetBody(
+                onPageChanged: (i) {
+                  setState(() {
+                    currentpage = i;
+                  });
+                },
+                controller: controller,
+              ),
+              const SizedBox(
                 height: 88,
               ),
-              CustomBtn(
-                text: AppStrings.next,
-              ),
-              SizedBox(
+              GetButtons(currentIndex: currentpage, controller: controller),
+              const SizedBox(
                 height: 17,
               )
             ],
