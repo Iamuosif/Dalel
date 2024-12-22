@@ -14,7 +14,8 @@ abstract class AppStrings {
       password = "Password",
       donthaveacc = "Don't have an account ?",
       haveacc = 'Already have am account ?',
-      termsandcondition = 'I have agree to our Terms and Condition',
+      termsandcondition = ' Terms and Condition',
+      ihaveagreetoour = 'I have agree to our',
       forgetpass = "Forget Password ?",
       welcome = 'Welcome!',
       welcomeback = 'Welcome Back!';

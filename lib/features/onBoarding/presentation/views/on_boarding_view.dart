@@ -1,4 +1,5 @@
 import 'package:dalel/core/functions/navigation.dart';
+import 'package:dalel/features/onBoarding/presentation/views/functions/onboardingvisited.dart';
 import 'package:dalel/features/onBoarding/presentation/views/widget/get_buttons.dart';
 import 'package:dalel/features/onBoarding/presentation/views/widget/onboarding_widget_body.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               ),
               CustomNavBar(
                 onTap: () {
-                  customNavigateReplacement(context, '/signUp');
+                  isonBoardingVisited();
+                  customReplacementNavigate(context, '/signUp');
                 },
               ),
               OnBoardingWidgetBody(

@@ -31,7 +31,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  get_it: ^8.0.3
   go_router: ^14.6.2
+  shared_preferences: ^2.3.3
   smooth_page_indicator: ^1.2.0+3
 
 dev_dependencies:

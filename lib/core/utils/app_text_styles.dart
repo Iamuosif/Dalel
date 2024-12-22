@@ -7,12 +7,32 @@ abstract class CustomTextStyle {
       fontWeight: FontWeight.w400,
       color: AppColors.deepbrown,
       fontFamily: "Pacifico");
-  static final poppins500style24 = TextStyle(
+  static final poppins500style24 = const TextStyle(
       fontSize: 22,
       fontWeight: FontWeight.w500,
       color: Colors.black,
       fontFamily: "Poppins");
-  static final poppins300style16 = TextStyle(
+  static final poppins500style16 = const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: Colors.grey,
+      fontFamily: "Poppins");
+  static final poppins400style12 = TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: AppColors.deepgrey,
+      fontFamily: "Poppins");
+  static final poppins500style12 = TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      color: AppColors.deepgrey,
+      fontFamily: "Poppins");
+  static final poppins600style28 = const TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.w600,
+      color: Colors.black,
+      fontFamily: "Poppins");
+  static final poppins300style16 = const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w300,
       color: Colors.black,
