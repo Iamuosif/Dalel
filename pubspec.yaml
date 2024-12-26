@@ -31,10 +31,13 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
+  bloc: ^8.1.0
   get_it: ^8.0.3
   go_router: ^14.6.2
   shared_preferences: ^2.3.3
   smooth_page_indicator: ^1.2.0+3
+  supabase_flutter: ^2.8.2
 
 dev_dependencies:
   flutter_lints: ^4.0.0

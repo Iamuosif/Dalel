@@ -18,5 +18,8 @@ abstract class AppStrings {
       ihaveagreetoour = 'I have agree to our',
       forgetpass = "Forget Password ?",
       welcome = 'Welcome!',
+      supaBaseUrl = 'https://narptxdnnprhzxpxwzxf.supabase.co',
+      supaBaseUnonKey =
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hcnB0eGRubnByaHp4cHh3enhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUwODE0MjIsImV4cCI6MjA1MDY1NzQyMn0.SRQDTHikPqEVo2ys1wlQ0oyfAf0JKWMpHBLikQIJkFY',
       welcomeback = 'Welcome Back!';
 }
