@@ -4,7 +4,9 @@ class Assets {
 
   /// Assets for imagesDalel Vector
   /// assets/images/Dalel Vector.svg
-  static const String imagesVector = "assets/images/Dalel Vector.svg";
+  static const String imagesVector1 = "assets/images/Dalel Vector.svg";
+
+  static const String imagesVector2 = "assets/images/Dalel Vector (1).svg";
 
   /// Assets for imagesForgetPass
   /// assets/images/forgetPass.png

@@ -4,6 +4,7 @@ import 'package:dalel/core/services/services_locator.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -18,7 +19,9 @@ class _SplashViewState extends State<SplashView> {
     bool isonBoardingVisited =
         getIt<CacheHelper>().getData(key: 'isonBoardingVisited') ?? false;
     if (isonBoardingVisited == true) {
-      delayedNavigate(context, '/signUp');
+      Supabase.instance.client.auth.currentUser == null
+          ? delayedNavigate(context, '/signIn')
+          : delayedNavigate(context, '/home');
     } else {
       delayedNavigate(context, '/onBoarding');
     }

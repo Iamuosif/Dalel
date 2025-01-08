@@ -1,21 +1,43 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 sealed class AuthState {}
 
 final class AuthInitial extends AuthState {}
 
-final class AuthSuccessState extends AuthState {
+final class SignUpSccuessState extends AuthState {
   final String userId;
 
-  AuthSuccessState({required this.userId});
+  SignUpSccuessState({required this.userId});
 }
 
-final class AuthLoadinState extends AuthState {
+final class SignUpLoadingState extends AuthState {
   final String loadingMessage;
 
-  AuthLoadinState({required this.loadingMessage});
+  SignUpLoadingState({required this.loadingMessage});
 }
 
-final class AuthFailureState extends AuthState {
+final class SignUpFailureState extends AuthState {
   final String errMessage;
 
-  AuthFailureState({required this.errMessage});
+  SignUpFailureState({required this.errMessage});
 }
+
+final class SignInSccuessState extends AuthState {
+  final User user;
+
+  SignInSccuessState({required this.user});
+}
+
+final class SignInLoadingState extends AuthState {
+  final String loadingMessage;
+
+  SignInLoadingState({required this.loadingMessage});
+}
+
+final class SignInFailureState extends AuthState {
+  final String errMessage;
+
+  SignInFailureState({required this.errMessage});
+}
+
+final class TermsAndConditionCurrentState extends AuthState {}

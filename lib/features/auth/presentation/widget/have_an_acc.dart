@@ -4,18 +4,25 @@ import 'package:flutter/material.dart';
 
 class HaveAnAccountWidget extends StatelessWidget {
   const HaveAnAccountWidget(
-      {super.key, required this.firstText, required this.secondText});
+      {super.key,
+      required this.firstText,
+      required this.secondText,
+      this.onTap});
   final String firstText, secondText;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
-    return Align(
-      child: Text.rich(TextSpan(children: [
-        TextSpan(text: firstText, style: CustomTextStyle.poppins400style12),
-        TextSpan(
-            text: secondText,
-            style: CustomTextStyle.poppins400style12
-                .copyWith(color: AppColors.lightgrey))
-      ])),
+    return GestureDetector(
+      onTap: onTap,
+      child: Align(
+        child: Text.rich(TextSpan(children: [
+          TextSpan(text: firstText, style: CustomTextStyle.poppins400style12),
+          TextSpan(
+              text: secondText,
+              style: CustomTextStyle.poppins400style12
+                  .copyWith(color: AppColors.lightgrey))
+        ])),
+      ),
     );
   }
 }
