@@ -11,8 +11,8 @@ import 'package:dalel/features/auth/presentation/widget/password_text_form_field
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomSignIpForm extends StatelessWidget {
-  const CustomSignIpForm({super.key});
+class CustomSignInForm extends StatelessWidget {
+  const CustomSignInForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CustomSignIpForm extends StatelessWidget {
       listener: (context, state) {
         if (state is SignInSccuessState) {
           showToast(msg: "Welcome Back!");
-          customReplacementNavigate(context, '/home');
+          customReplacementNavigate(context, '/homeNavBar');
         } else if (state is SignInFailureState) {
           showToast(msg: state.errMessage);
         }
@@ -44,7 +44,7 @@ class CustomSignIpForm extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 16),
-                const ForgetPasswordTextWidget(),
+                const ForgotPasswordTextWidget(),
                 const SizedBox(height: 150),
                 state is SignInLoadingState
                     ? CircularProgressIndicator(
@@ -52,10 +52,10 @@ class CustomSignIpForm extends StatelessWidget {
                       )
                     : CustomBtn(
                         text: AppStrings.signin,
-                        onPressed: () {
+                        onPressed: () async {
                           if (authCubit.signInFormKey.currentState!
                               .validate()) {
-                            authCubit.signInwithEmailAndPassword();
+                            await authCubit.signInwithEmailAndPassword();
                           }
                         },
                       ),

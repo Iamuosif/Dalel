@@ -37,6 +37,7 @@ dependencies:
   fluttertoast: ^8.2.10
   get_it: ^8.0.3
   go_router: ^14.6.2
+  persistent_bottom_nav_bar: ^6.2.1
   shared_preferences: ^2.3.3
   smooth_page_indicator: ^1.2.0+3
   supabase_flutter: ^2.8.2

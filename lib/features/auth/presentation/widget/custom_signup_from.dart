@@ -21,7 +21,7 @@ class CustomSignUpForm extends StatelessWidget {
       listener: (context, state) {
         if (state is SignUpSccuessState) {
           showToast(msg: "Account Created Successfully");
-          customReplacementNavigate(context, '/home');
+          customReplacementNavigate(context, '/signIn');
         } else if (state is SignUpFailureState) {
           showToast(msg: state.errMessage);
         }
@@ -68,11 +68,11 @@ class CustomSignUpForm extends StatelessWidget {
                             ? AppColors.lightgrey
                             : null,
                         text: AppStrings.signup,
-                        onPressed: () {
+                        onPressed: () async {
                           if (authCubit.termsAndConditionCurrentState == true) {
                             if (authCubit.signUpFormKey.currentState!
                                 .validate()) {
-                              authCubit.signUpWithEmailAndPassword();
+                              await authCubit.signUpWithEmailAndPassword();
                             }
                           }
                         },

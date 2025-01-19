@@ -12,6 +12,7 @@ class AuthCubit extends Cubit<AuthState> {
   bool? termsAndConditionCurrentState = false;
   GlobalKey<FormState> signUpFormKey = GlobalKey();
   GlobalKey<FormState> signInFormKey = GlobalKey();
+  GlobalKey<FormState> resetPasswordFormKey = GlobalKey();
   final supabase = supa.Supabase.instance.client;
   Future<void> signUpWithEmailAndPassword() async {
     if (email == null || password == null) {
@@ -30,6 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (response.user != null) {
         debugPrint('Sign-up successful: User ID ${response.user!.id}');
+        await addUserProfile(user: response.user!);
         emit(SignUpSccuessState(userId: response.user!.id));
       } else {
         debugPrint('Sign-up failed: No user returned.');
@@ -49,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  updateTermsAndConditionCurrentState({required newValue}) {
+  void updateTermsAndConditionCurrentState({required newValue}) {
     termsAndConditionCurrentState = newValue;
     emit(TermsAndConditionCurrentState());
   }
@@ -82,6 +84,42 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       // Handle all other errors
       emit(SignInFailureState(errMessage: 'An unexpected error occurred: $e'));
+    }
+  }
+
+  Future<void> resetPassword() async {
+    try {
+      emit(PasswordResetLoading());
+      await supabase.auth.resetPasswordForEmail(email!);
+      emit(PasswordResetSuccess());
+    } on Exception catch (e) {
+      emit(PasswordResetFailure(errMessage: e.toString()));
+    }
+  }
+
+  Future<void> addUserProfile({required supa.User user}) async {
+    final user = supabase.auth.currentUser;
+    if (user == null) {
+      debugPrint('No user is currently logged in.');
+      return;
+    }
+
+    if (firstName!.isEmpty || lastName!.isEmpty || email!.isEmpty) {
+      debugPrint('Please fill in all fields.');
+      return;
+    }
+
+    try {
+      // No need to call .execute()
+      await supabase.from('users').insert({
+        'first_name': firstName,
+        'last_name': lastName,
+        'email': email,
+      });
+
+      debugPrint('User profile added successfully!');
+    } catch (e) {
+      debugPrint('Error adding user profile: $e');
     }
   }
 }

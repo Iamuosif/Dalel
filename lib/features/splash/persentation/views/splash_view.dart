@@ -21,7 +21,7 @@ class _SplashViewState extends State<SplashView> {
     if (isonBoardingVisited == true) {
       Supabase.instance.client.auth.currentUser == null
           ? delayedNavigate(context, '/signIn')
-          : delayedNavigate(context, '/home');
+          : delayedNavigate(context, '/homeNavBar');
     } else {
       delayedNavigate(context, '/onBoarding');
     }
