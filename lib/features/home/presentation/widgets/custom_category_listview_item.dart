@@ -2,10 +2,10 @@ import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class HistoricalSouvinersItem extends StatelessWidget {
-  const HistoricalSouvinersItem(
-      {super.key, required this.text, required this.image});
-  final String text;
+class CustomCategoryListViewItem extends StatelessWidget {
+  const CustomCategoryListViewItem(
+      {super.key, required this.name, required this.image});
+  final String name;
   final ImageProvider image;
   @override
   Widget build(BuildContext context) {
@@ -28,15 +28,14 @@ class HistoricalSouvinersItem extends StatelessWidget {
               height: 96,
               width: 74,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: image,
-                ),
+                borderRadius: BorderRadius.circular(5),
+                image: DecorationImage(image: image, fit: BoxFit.fill),
               )),
           SizedBox(
-            height: 36,
-            width: 60,
+            height: 20,
+            width: 70,
             child: Text(
-              text,
+              name,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               textAlign: TextAlign.center,
