@@ -1,7 +1,10 @@
-import 'package:dalel/core/utils/app_assets.dart';
+import 'package:dalel/core/functions/custom_toast.dart';
+import 'package:dalel/core/widget/custom_shimmer_category.dart';
 import 'package:dalel/features/home/data/models/historical_periods_model.dart';
+import 'package:dalel/features/home/presentation/cubit/home_cubit.dart';
 import 'package:dalel/features/home/presentation/widgets/historical_period_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HistoricalPeriods extends StatelessWidget {
@@ -9,43 +12,35 @@ class HistoricalPeriods extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Map<String, dynamic>>>(
-        future: Supabase.instance.client.from('historical_periods').select(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          }
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No data available'));
-          }
-
-          if (snapshot.hasData) {
-            List<HistoricalPeriodsModel> historicalPeriods = [];
-            for (int i = 0; i < snapshot.data!.length; i++) {
-              historicalPeriods
-                  .add(HistoricalPeriodsModel.fromJson(snapshot.data![i]));
-            }
-            return SizedBox(
-              height: 96,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(
-                    width: 10,
-                  );
-                },
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  return HistoricalPeriodItem(model: historicalPeriods[index]);
-                },
-              ),
-            );
-          }
-          return const Text('Error');
-        });
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        if (state is HistoricalPeriodsFaliure) {
+          showToast(msg: state.errMessage);
+        }
+      },
+      builder: (context, state) {
+        return state is HistoricalPeriodsLoading
+            ? const CustomShimmerCategory()
+            : SizedBox(
+                height: 96,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(
+                      width: 10,
+                    );
+                  },
+                  itemCount:
+                      context.read<HomeCubit>().historicalPeriodsModel.length,
+                  itemBuilder: (context, index) {
+                    return HistoricalPeriodItem(
+                        model: context
+                            .read<HomeCubit>()
+                            .historicalPeriodsModel[index]);
+                  },
+                ),
+              );
+      },
+    );
   }
 }
