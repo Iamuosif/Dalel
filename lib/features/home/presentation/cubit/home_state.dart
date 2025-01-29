@@ -23,3 +23,23 @@ final class WarsFaliure extends HomeState {
 }
 
 final class WarsLoading extends HomeState {}
+
+final class HistoricalCharactersSuccess extends HomeState {}
+
+final class HistoricalCharactersFailiure extends HomeState {
+  final String errMessage;
+
+  HistoricalCharactersFailiure({required this.errMessage});
+}
+
+final class HistoricalCharactersLoading extends HomeState {}
+
+final class HistoricalSouvenirsSuccess extends HomeState {}
+
+final class HistoricalSouvenirsFailiure extends HomeState {
+  final String errMessage;
+
+  HistoricalSouvenirsFailiure({required this.errMessage});
+}
+
+final class HistoricalSouvenirsLoading extends HomeState {}

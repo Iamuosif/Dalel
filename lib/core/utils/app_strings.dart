@@ -27,7 +27,7 @@ abstract class AppStrings {
           'Enter your registered email below to receive password reset instruction',
       //!Home
       ancientEgypt = 'Ancient Egypt',
-      historicalPeriods = 'Historical periods',
+      historicalPeriods = 'Historical Periods',
       historicalCharacters = 'Historical Characters',
       about = 'About',
       historicalSouvenirs = 'Historical Souvenirs';
@@ -39,5 +39,6 @@ abstract class SupabaseString {
       image = 'image',
       wars = 'wars',
       description = 'description',
+      historicalItems = 'historical_items',
       historicalPeriodsId = 'historical_period_id';
 }

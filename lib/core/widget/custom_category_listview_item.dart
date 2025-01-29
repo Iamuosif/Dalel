@@ -1,12 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dalel/core/models/data_model.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomCategoryListViewItem extends StatelessWidget {
-  const CustomCategoryListViewItem(
-      {super.key, required this.name, required this.image});
-  final String name;
-  final ImageProvider image;
+  const CustomCategoryListViewItem({super.key, required this.model});
+  final DataModel model;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,18 +24,17 @@ class CustomCategoryListViewItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-              height: 96,
-              width: 74,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                image: DecorationImage(image: image, fit: BoxFit.fill),
-              )),
+          SizedBox(
+              child: SizedBox(
+            height: 96,
+            width: 74,
+            child: CachedNetworkImage(imageUrl: model.image),
+          )),
           SizedBox(
             height: 20,
             width: 70,
             child: Text(
-              name,
+              model.name,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               textAlign: TextAlign.center,
