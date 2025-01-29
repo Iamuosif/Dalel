@@ -13,3 +13,13 @@ final class HistoricalPeriodsFaliure extends HomeState {
 }
 
 final class HistoricalPeriodsLoading extends HomeState {}
+
+final class WarsSuccess extends HomeState {}
+
+final class WarsFaliure extends HomeState {
+  final String errMessage;
+
+  WarsFaliure({required this.errMessage});
+}
+
+final class WarsLoading extends HomeState {}

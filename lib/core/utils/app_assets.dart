@@ -24,6 +24,9 @@ class Assets {
 
   static const String inActiveSearch = 'assets/images/inActive Search.svg';
 
+  static const String lifeKey = 'assets/images/Dalel Vector (2).svg';
+  static const String pyramids2 = 'assets/images/Pyramid from Dalel.svg';
+
   static const String menu = 'assets/images/Dalel Layer 2.svg';
   static const String pyramids = 'assets/images/pyramids.png';
   static const String islamicEra = 'assets/images/islamicEra.png';

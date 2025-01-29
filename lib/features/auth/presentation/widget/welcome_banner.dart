@@ -16,7 +16,7 @@ class WelcomeBanner extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(
+          const Text(
             AppStrings.appname,
             style: CustomTextStyle.saira700style32,
             textAlign: TextAlign.center,

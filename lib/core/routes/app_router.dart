@@ -2,6 +2,8 @@ import 'package:dalel/features/auth/presentation/auth_cubit/cubit/auth_cubit.dar
 import 'package:dalel/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_in_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_up_view.dart';
+import 'package:dalel/features/home/data/models/historical_periods_model.dart';
+import 'package:dalel/features/home/presentation/view/historical_periods_details_view.dart';
 import 'package:dalel/features/home/presentation/view/home_view.dart';
 import 'package:dalel/features/home/presentation/widgets/home_nav_bar.dart';
 import 'package:dalel/features/onBoarding/presentation/views/on_boarding_view.dart';
@@ -45,6 +47,12 @@ final GoRouter router = GoRouter(routes: [
     builder: (context, state) => BlocProvider(
       create: (context) => AuthCubit(),
       child: const ForgotPasswordView(),
+    ),
+  ),
+  GoRoute(
+    path: '/HistoricalPeriodsDetailsView',
+    builder: (context, state) => HistoricalPeriodsDetailsView(
+      model: state.extra as HistoricalPeriodsModel,
     ),
   ),
 ]);

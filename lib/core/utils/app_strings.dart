@@ -26,7 +26,18 @@ abstract class AppStrings {
       enteryouremail =
           'Enter your registered email below to receive password reset instruction',
       //!Home
+      ancientEgypt = 'Ancient Egypt',
       historicalPeriods = 'Historical periods',
       historicalCharacters = 'Historical Characters',
+      about = 'About',
       historicalSouvenirs = 'Historical Souvenirs';
+}
+
+abstract class SupabaseString {
+  static const String histroicalPeriods = 'historical_periods',
+      name = 'name',
+      image = 'image',
+      wars = 'wars',
+      description = 'description',
+      historicalPeriodsId = 'historical_period_id';
 }
