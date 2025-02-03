@@ -21,6 +21,7 @@ class HistoricalSouvenirs extends StatelessWidget {
             ? const CustomShimmerContainers()
             : CustomCategoryListView(
                 model: context.read<HomeCubit>().souvenirsList,
+                routePath: '/HistoricalSouvenirsDetailsView',
               );
       },
     );

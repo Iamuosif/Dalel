@@ -21,6 +21,7 @@ class HistoricalCharacters extends StatelessWidget {
             ? const CustomShimmerContainers()
             : CustomCategoryListView(
                 model: context.read<HomeCubit>().charactersList,
+                routePath: '/HistoricalCharactersDetailsView',
               );
       },
     );

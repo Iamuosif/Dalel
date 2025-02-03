@@ -7,14 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PeriodsDetailsSection extends StatelessWidget {
-  const PeriodsDetailsSection(
-      {super.key,
-      required this.periodName,
-      required this.description,
-      required this.imageUrl});
+  const PeriodsDetailsSection({
+    super.key,
+    required this.periodName,
+    required this.description,
+    required this.imageUrl,
+  });
   final String periodName;
   final String description;
   final String imageUrl;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,7 +27,8 @@ class PeriodsDetailsSection extends StatelessWidget {
             const SizedBox(
               width: 6,
             ),
-            SvgPicture.asset(Assets.lifeKey),
+            // Conditionally show the SvgPicture only if periodName equals 'example'
+            if (periodName == 'Ancient Egypt') SvgPicture.asset(Assets.lifeKey),
           ],
         ),
         const SizedBox(height: 30),
@@ -34,7 +37,11 @@ class PeriodsDetailsSection extends StatelessWidget {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                Positioned(top: -64, child: SvgPicture.asset(Assets.pyramids2)),
+                if (periodName == 'Ancient Egypt')
+                  Positioned(
+                    top: -64,
+                    child: SvgPicture.asset(Assets.pyramids2),
+                  ),
                 SizedBox(
                   height: 220,
                   width: 196,

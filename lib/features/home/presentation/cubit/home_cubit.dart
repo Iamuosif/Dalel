@@ -1,4 +1,5 @@
 import 'package:dalel/core/utils/app_strings.dart';
+import 'package:dalel/features/home/data/models/character_wars.dart';
 import 'package:dalel/features/home/data/models/historical_character_model.dart';
 import 'package:dalel/features/home/data/models/historical_periods_model.dart';
 import 'package:dalel/features/home/data/models/historical_souvenirs_model.dart';
@@ -15,7 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<HistoricalCharactersModel> charactersList = [];
   List<HistoricalSouvenirsModel> souvenirsList = [];
 
-  Future<List<WarsModel>> getWars(String historicalPeriodId) async {
+  Future<List<WarsModel>> getPeriodsWars(String historicalPeriodId) async {
     try {
       emit(WarsLoading());
       final response = await Supabase.instance.client
@@ -43,13 +44,32 @@ class HomeCubit extends Cubit<HomeState> {
 
       for (var row in response) {
         // Fetch wars for the current period
-        final wars = await getWars(row['id']); // Assume 'id' is the period ID
+        final wars =
+            await getPeriodsWars(row['id']); // Assume 'id' is the period ID
         historicalPeriodsModel.add(HistoricalPeriodsModel.fromJson(row, wars));
       }
 
       emit(HistoricalPeriodsSuccess());
     } on Exception catch (e) {
       emit(HistoricalPeriodsFaliure(errMessage: e.toString()));
+    }
+  }
+
+  Future<List<CharacterWars>> getCharactersWars(String characterId) async {
+    try {
+      emit(CharactersWarsLoading());
+      final response = await Supabase.instance.client
+          .from(SupabaseString.charactersWars)
+          .select()
+          .eq('character_id', characterId); // Filter by period ID
+
+      emit(CharactersWarsSuccess());
+      return response
+          .map<CharacterWars>((row) => CharacterWars.fromJson(row))
+          .toList();
+    } on Exception catch (e) {
+      emit(CharactersWarsFailure(errMessage: e.toString()));
+      return [];
     }
   }
 
@@ -62,10 +82,11 @@ class HomeCubit extends Cubit<HomeState> {
           .eq('type', 'character')
           .order('created_at', ascending: true);
 
-      charactersList = response
-          .map<HistoricalCharactersModel>(
-              (json) => HistoricalCharactersModel.fromJson(json))
-          .toList();
+      for (var row in response) {
+        final wars = await getCharactersWars(row['id']);
+        charactersList.add(HistoricalCharactersModel.fromJson(row, wars));
+      }
+
       emit(HistoricalCharactersSuccess());
     } on Exception catch (e) {
       emit(HistoricalCharactersFailiure(errMessage: e.toString()));

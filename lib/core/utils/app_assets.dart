@@ -27,6 +27,12 @@ class Assets {
   static const String lifeKey = 'assets/images/Dalel Vector (2).svg';
   static const String pyramids2 = 'assets/images/Pyramid from Dalel.svg';
 
+  static const String salahAlDin2 = 'assets/images/dalel_shawn_slg_1.png';
+  static const String eagle = 'assets/images/Group.svg';
+  static const String smallCircle = 'assets/images/Ellipse 7 from Dalel.svg';
+  static const String bigCircle = 'assets/images/Ellipse 6 from Dalel.svg';
+  static const String shape = 'assets/images/Vector 89 from Dalel.svg';
+
   static const String menu = 'assets/images/Dalel Layer 2.svg';
   static const String pyramids = 'assets/images/pyramids.png';
   static const String islamicEra = 'assets/images/islamicEra.png';

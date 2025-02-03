@@ -3,8 +3,9 @@ import 'package:dalel/core/widget/custom_category_listview_item.dart';
 import 'package:flutter/material.dart';
 
 class CustomCategoryListView extends StatelessWidget {
-  const CustomCategoryListView({super.key, required this.model});
-
+  const CustomCategoryListView(
+      {super.key, required this.model, required this.routePath});
+  final String routePath;
   final List<DataModel> model;
 
   @override
@@ -18,6 +19,7 @@ class CustomCategoryListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return CustomCategoryListViewItem(
               model: model[index],
+              routePath: routePath,
             );
           },
           separatorBuilder: (context, index) {

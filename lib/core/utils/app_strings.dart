@@ -40,5 +40,8 @@ abstract class SupabaseString {
       wars = 'wars',
       description = 'description',
       historicalItems = 'historical_items',
+      charactersWars = 'characters_wars',
+      historicalSouvenirs = 'historical_souvenirs',
+      characterId = 'character_id',
       historicalPeriodsId = 'historical_period_id';
 }

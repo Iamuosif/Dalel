@@ -24,6 +24,16 @@ final class WarsFaliure extends HomeState {
 
 final class WarsLoading extends HomeState {}
 
+final class CharactersWarsSuccess extends HomeState {}
+
+final class CharactersWarsFailure extends HomeState {
+  final String errMessage;
+
+  CharactersWarsFailure({required this.errMessage});
+}
+
+final class CharactersWarsLoading extends HomeState {}
+
 final class HistoricalCharactersSuccess extends HomeState {}
 
 final class HistoricalCharactersFailiure extends HomeState {

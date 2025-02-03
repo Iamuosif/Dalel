@@ -1,13 +1,19 @@
-import 'package:dalel/core/widget/periods_details_section.dart';
+import 'package:dalel/core/widget/historical_characters_details.dart';
 import 'package:dalel/core/widget/periods_wars_section.dart';
-import 'package:dalel/features/home/data/models/historical_periods_model.dart';
+
+import 'package:dalel/features/home/data/models/historical_character_model.dart';
+
 import 'package:dalel/features/home/presentation/widgets/home_appbar_section.dart';
 import 'package:dalel/features/home/presentation/widgets/recommendation_section.dart';
+
 import 'package:flutter/material.dart';
 
-class HistoricalPeriodsDetailsView extends StatelessWidget {
-  const HistoricalPeriodsDetailsView({super.key, required this.model});
-  final HistoricalPeriodsModel model;
+class HistoricalCharactersDetailsView extends StatelessWidget {
+  const HistoricalCharactersDetailsView({
+    super.key,
+    required this.model,
+  });
+  final HistoricalCharactersModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +24,14 @@ class HistoricalPeriodsDetailsView extends StatelessWidget {
         slivers: [
           const SliverToBoxAdapter(child: HomeAppBarSection()),
           SliverToBoxAdapter(
-              child: PeriodsDetailsSection(
-            periodName: model.name,
+              child: HistoricalCharactersDetails(
+            charName: model.name,
             description: model.description,
             imageUrl: model.image,
           )),
-          const SliverToBoxAdapter(child: SizedBox(height: 22)),
           SliverToBoxAdapter(
               child: PeriodsWarsSection(
-            warsList: model.wars,
-            eraName: model.name,
-          )),
+                  warsList: model.wars, eraName: model.name)),
           const SliverToBoxAdapter(child: RecommendationsSection())
         ],
       ),
