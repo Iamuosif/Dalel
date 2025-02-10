@@ -2,6 +2,7 @@ import 'package:dalel/features/auth/presentation/auth_cubit/cubit/auth_cubit.dar
 import 'package:dalel/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_in_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_up_view.dart';
+import 'package:dalel/features/bazar/presentation/view/bazar_view.dart';
 import 'package:dalel/features/home/data/models/historical_character_model.dart';
 import 'package:dalel/features/home/data/models/historical_periods_model.dart';
 import 'package:dalel/features/home/presentation/view/historical_characters_details_view.dart';
@@ -25,6 +26,10 @@ final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: '/home',
     builder: (context, state) => const HomeView(),
+  ),
+  GoRoute(
+    path: '/bazar',
+    builder: (context, state) => const BazarView(),
   ),
   GoRoute(
     path: '/homeNavBar',

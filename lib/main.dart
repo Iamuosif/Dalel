@@ -6,6 +6,7 @@ import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/features/bazar/presentation/cubit/bazar_cubit.dart';
 import 'package:dalel/features/home/presentation/cubit/home_cubit.dart';
+import 'package:dalel/features/search/presentation/cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -32,6 +33,13 @@ void main() async {
             create: (context) => BazarCubit()
               ..getHistoricalBooks()
               ..getSouvenirs()),
+        BlocProvider(
+          create: (context) {
+            final homeCubit = BlocProvider.of<HomeCubit>(context);
+            final bazarCubit = BlocProvider.of<BazarCubit>(context);
+            return SearchCubit(homeCubit, bazarCubit);
+          },
+        )
       ],
       child: const Dalel(),
     ),
