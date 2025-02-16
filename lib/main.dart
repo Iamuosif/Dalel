@@ -4,6 +4,7 @@ import 'package:dalel/core/routes/app_router.dart';
 import 'package:dalel/core/services/services_locator.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
+import 'package:dalel/features/auth/presentation/auth_cubit/cubit/auth_cubit.dart';
 import 'package:dalel/features/bazar/presentation/cubit/bazar_cubit.dart';
 import 'package:dalel/features/home/presentation/cubit/home_cubit.dart';
 import 'package:dalel/features/search/presentation/cubit/search_cubit.dart';
@@ -39,6 +40,9 @@ void main() async {
             final bazarCubit = BlocProvider.of<BazarCubit>(context);
             return SearchCubit(homeCubit, bazarCubit);
           },
+        ),
+        BlocProvider(
+          create: (context) => AuthCubit(),
         )
       ],
       child: const Dalel(),

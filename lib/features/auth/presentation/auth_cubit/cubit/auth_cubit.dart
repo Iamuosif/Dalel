@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dalel/features/auth/presentation/auth_cubit/cubit/auth_state.dart';
+import 'package:dalel/features/profile/data/model/user_profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supa;
 
@@ -13,6 +14,7 @@ class AuthCubit extends Cubit<AuthState> {
   GlobalKey<FormState> signUpFormKey = GlobalKey();
   GlobalKey<FormState> signInFormKey = GlobalKey();
   GlobalKey<FormState> resetPasswordFormKey = GlobalKey();
+  List<UserProfileModel> userProfiles = [];
   final supabase = supa.Supabase.instance.client;
   Future<void> signUpWithEmailAndPassword() async {
     if (email == null || password == null) {
@@ -111,15 +113,39 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
       // No need to call .execute()
-      await supabase.from('users').insert({
+      await supabase.from('user').insert({
         'first_name': firstName,
         'last_name': lastName,
         'email': email,
+        'id': user.id,
       });
 
-      debugPrint('User profile added successfully!');
+      debugPrint('⚠️ Inserting user profile for: ${user.id}');
     } catch (e) {
       debugPrint('Error adding user profile: $e');
+    }
+  }
+
+  Future<UserProfileModel?> fetchUserProfile() async {
+    final user = supabase.auth.currentUser; // Get the current user
+    if (user == null) {
+      debugPrint('No user is currently logged in.');
+      return null;
+    }
+
+    try {
+      // Fetch user data from the 'users' table
+      final response = await supabase
+          .from('user')
+          .select(
+              'first_name, email , last_name') // Select only username and email
+          .eq('id', user.id) // Match the user ID
+          .single(); // Fetch a single record
+
+      return UserProfileModel.fromJson(response);
+    } catch (e) {
+      debugPrint('Error fetching user profile: $e');
+      return null;
     }
   }
 }
